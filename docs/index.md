@@ -11,7 +11,7 @@ req.onupgradeneeded = function (e) {
   if (v < 2) {
     items = db.createObjectStore("items", { keyPath: "id" });
   }
-  if (v < 5) {
+  if (v < 3) {
     items = t.objectStore('items');
     items.createIndex("name", "name", { unique: false });
   }
