@@ -1,6 +1,10 @@
 # Cursor
 
+A _curser_ can be used to traverse a collection of _elements_.
+
 ## Using a Cursor
+
+A cursor can be created to traverse a _object store_. This is done via a call to the _openCursor_ method.
 
 ```javascript
 function getItems() {
@@ -21,6 +25,8 @@ function getItems() {
 ```
 
 ## Using a Cursor on an Index
+
+A cursor can also be created for a _index_.
 
 ```javascript
 function getItems() {
@@ -43,6 +49,8 @@ function getItems() {
 
 ### Key Cursor
 
+A _Key Curser_ is a curser that iterates over the key and not the hole document.
+
 ```javascript
 function getItems() {
   var t = db.transaction(["items"]);
@@ -64,6 +72,8 @@ function getItems() {
 
 ### Key Range
 
+A curser can be restricted by a _Key Range_.
+
 ```javascript
 function getItemsByName(name) {
   var t = db.transaction(["items"]);
@@ -84,20 +94,25 @@ function getItemsByName(name) {
 }
 ```
 
+Many different types of key ranges can be constructed.
+
 - `IDBKeyRange.lowerBound('Baz')` - ['Baz' .. ->
 - `IDBKeyRange.lowerBound('Baz', true)` - ('Baz' .. ->
 - `IDBKeyRange.upperBound('Foo', true)` - <- .. 'Foo')
 - `IDBKeyRange.upperBound('Foo')` - <- .. 'Foo']
 - `IDBKeyRange.bound('Baz', 'Foo', false, true);` - ['Baz' .. 'Foo')
 
+
 ### Direction
+
+The cursor can iterate in different ways - _'next'_ is default.
 
 ```javascript
 var req = index.openCursor(null, 'prev');
 ```
 
-- 'next'
-- 'nextunique'
-- 'prev'
-- 'prevunique'
+- _'next'_
+- _'nextunique'_
+- _'prev'_
+- _'prevunique'_
 

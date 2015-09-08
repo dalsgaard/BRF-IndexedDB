@@ -1,6 +1,22 @@
 # Intro
 
+The IndexedDB API is places as the property _indexedDB_ on the _window_ (root) object.
+
+Most of the interaction is asynchronous and take the form.
+
+```javascript
+var req = someObject.someMethod(someArgs);
+req.onerror = function (e) {
+  // Error Occurred!
+}
+req.onsuccess = function (e) {
+  	
+}
+```
+
 ## Opening a Database
+
+A database is opened via a call to _open_. The first argument is the name of the database, and the second is the version number.
 
 ```javascript
 (function () {
@@ -18,22 +34,16 @@
 })();
 ```
 
-### _onsuccess_
-
-
-
-### _onerror_
-
-
-
-### _onupgradeneeded_
-
-
 ## Upgrading the Database Schema
+
+If the version number of the existing database is lower than the requested version, a callback assigned to the _onupgradeneeded_ property is called.
 
 ```javascript
 var req = window.indexedDB.open('Foo', 2);
 ```
+The event given to the callback contains (among others) a reference to the database and the version number of the existing database.
+
+An _Object Store_ can be created via a call to _createObjectStore_ method, where the first argument is the name, and the second is an object with options.
 
 ```javascript
 req.onupgradeneeded = function (e) {
@@ -46,6 +56,10 @@ req.onupgradeneeded = function (e) {
 ```
 
 ## Adding Data to the Database
+
+All reading and writing from and to the database is done in a transaction. A transaction is created via a call to the _transaction_ method, where the first argument is an array of the _object stores_ participating in the transaction, and the optional second argument is the _mode_ (default is 'readonly').
+
+Data is added to an object store via a call to the _add_ method. 
 
 ```javascript
 function addItem(id, name) {
@@ -69,6 +83,8 @@ function addItem(id, name) {
 
 ## Getting Data from the Database
 
+Data is retrieved from an object store via a call to the _get_ method.
+
 ```javascript
 function getItem(id) {
   var t = db.transaction(["items"]);
@@ -85,6 +101,9 @@ function getItem(id) {
 
 ## Updating Data in the Database
 
+Data in the object store is updated via a call to the _update_ method.
+
+
 ```javascript
 function updateItem(item) {
   var t = db.transaction(["items"], "readwrite");
@@ -100,6 +119,8 @@ function updateItem(item) {
 ```
 
 ## Deleting Data from the Database
+
+Data in the object store is deleted via a call to the _delete_ method.
 
 ```javascript
 function deleteItem(id) {

@@ -1,6 +1,12 @@
 # Index
 
+An _index_ is a smart _'look-up table'_ for an existing _field_ in an object store.
+
 ## Creating an Index
+
+When the _onupgradeneeded_ callback is called, a transaction is created. This transaction can be used to manipulate the database _skema_.
+
+A new index is created via a call to he _createIndex_ method.
 
 ```javascript
 req.onupgradeneeded = function (e) {
@@ -19,6 +25,8 @@ req.onupgradeneeded = function (e) {
 ```
 
 ## Using an Index
+
+A index can be used to retrieve single documents via the index key.
 
 ```javascript
 function getItemByName(name) {

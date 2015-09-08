@@ -1,6 +1,10 @@
 # Key Path and Auto Increment
 
+Key Path and Auto Increment is to options that can be applied when a _object store_ is created.
+
 ## No Path and No Auto
+
+This is the default behaviour. A key has to be provided when data is added.
 
 ```javascript
 if (v < 4) {
@@ -27,9 +31,11 @@ function addNoPathNoAuto(id, name) {
 
 ## Path and No Auto
 
-Like in the previous examples.
+Like in the previous examples. The key is read from the _path_.
 
 ## No Path and Auto
+
+The key is auto-generated (incremented).
 
 ```javascript
 if (v < 5) {
@@ -55,6 +61,8 @@ function addNoPathAuto(name) {
 ```
 
 ## Path and Auto
+
+The key is auto-generated (incremented) and placed in _path_.
 
 ```javascript
 if (v < 6) {
