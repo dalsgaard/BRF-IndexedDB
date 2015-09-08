@@ -27,6 +27,7 @@ function addNoPathNoAuto(id, name) {
 
 ## Path and No Auto
 
+Like in the previous examples.
 
 ## No Path and Auto
 
